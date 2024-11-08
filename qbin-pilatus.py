@@ -24,6 +24,15 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     # pixel size parameters
     hpxsz = 75 # horizontal pixel size in micrometers
     vpxsz = 75 # vertical pixel size in micrometers
-    
+
+    # Sample rotation angles
+    if Samth is None: Samth = 24.9456 # Sample rotation about vertical axis (deg, right-hand-rule)
+    if Samchi is None: Samchi = 0.0
+    if Samphi is None: Samphi = 0.0
+    sth = np.radians(Samth)
+    sch = np.radians(Samchi)
+    sph = np.radians(Samphi)
+
+    #
     print('test')
 qbin_pilatus([[0]], 0, 0, 0, 0, 0)
