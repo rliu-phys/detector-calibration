@@ -17,5 +17,13 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     - Samth, Samchi, Samphi: Sample rotation angles (in degrees)
     - plotflag: Whether to plot images (default: True)
     """
+    # Energy and momentum parameters
+    EkeV = 12.0 # beam energy in keV
+    kb = 2 * np.pi * EkeV / 12.39842 # beam momentum in 1/A
+
+    # pixel size parameters
+    hpxsz = 75 # horizontal pixel size in micrometers
+    vpxsz = 75 # vertical pixel size in micrometers
+    
     print('test')
 qbin_pilatus([[0]], 0, 0, 0, 0, 0)
