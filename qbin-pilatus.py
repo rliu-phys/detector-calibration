@@ -68,5 +68,26 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     ])
     sROT = sROT1 @ sROT2 @ sROT3
 
-    print(sROT)
-qbin_pilatus([[0]], 45, 0, 10, 0, 0)
+    # Create grid of pixel positions
+    vNdet, hNdet = img_exp.shape
+    vNcen, hNcen = vNdet // 2, hNdet //2
+    vimaxis = np.arange(1 - vNcen, vNdet - vNcen + 1)
+    himaxis = np.arange(1 - hNcen, hNdet - hNcen + 1)
+
+    # Generate pixel arrays
+    pix_x = np.tile(himaxis * hpxsz + Xdet, (vNdet, 1))
+    pix_y = np.tile((vimaxis * vpxsz + Ydet).reshape(-1,1), (1, hNdet))
+
+    # Calculate real-space pixel positions
+    kfmat = np.zeros((vNdet, hNdet, 4))
+    kfmat[:, :, 0] = pix_x * jvec[0] + pix_y * ivec[0] + Detcen[0]
+    kfmat[:, :, 1] = pix_x * jvec[1] + pix_y * ivec[1] + Detcen[1]
+    kfmat[:, :, 2] = pix_x * jvec[2] + pix_y * ivec[2] + Detcen[2]
+    kfmat[:, :, 3] = np.linalg.norm(kfmat[:, :, :3], axis=2)
+
+    # Normalize kfmat to get unit vectors
+    kfmat[:, :, :3] /= kfmat[:, :, 3, np.newaxis]
+    
+
+    print(kfmat)
+qbin_pilatus(np.ones((5,5)), 45, 0, 10, 0, 0)
