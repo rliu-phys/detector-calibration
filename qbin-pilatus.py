@@ -44,5 +44,11 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
         Rdet * np.cos(tthd) * np.cos(gamd)
     ])
     Detunit = Detcen / np.linalg.norm(Detcen)
+
+    # Calculate unit vectors for pixel directions
+    jvec = np.cross([0,1,0], Detunit)
+    jvec /= np.linalg.norm(jvec)
+    ivec = np.cross(jvec, Detunit)
+    
     print(Detcen)
 qbin_pilatus([[0]], 0, 0, 0, 0, 0)
