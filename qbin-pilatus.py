@@ -96,7 +96,14 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     qmat = kb * (kfmat[:, :, :3] - kimat)
     qmat_magnitude = np.linalg.norm(qmat, axis=2)
 
+    # Plot results if required
+    if plotflag:
+        plt.figure()
+        plt.imshow(qmat_magnitude, cmap='gray')
+        plt.title("Momentum transfer (A^-1) per pixel map")
+        plt.colorbar()
+        plt.show()
 
+    return qmat
 
-    print(kfmat)
-qbin_pilatus(np.ones((5,5)), 45, 0, 10, 0, 0)
+# qbin_pilatus(np.ones((5,5)), 45, 0, 10, 0, 0)
