@@ -87,7 +87,16 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
 
     # Normalize kfmat to get unit vectors
     kfmat[:, :, :3] /= kfmat[:, :, 3, np.newaxis]
-    
+
+    # Calculate initial wavevector and q vectors
+    sqz = sROT @ np.array([0, 0, 1])
+    prefac = -2 * (kfmat[:, :, 0] * sqz[0] + kfmat[:, :, 1] * sqz[1] + kfmat[:, :, 2] * sqz[2])
+    kimat = kfmat[:, :, :3] + prefac[:, :, np.newaxis] * sqz
+
+    qmat = kb * (kfmat[:, :, :3] - kimat)
+    qmat_magnitude = np.linalg.norm(qmat, axis=2)
+
+
 
     print(kfmat)
 qbin_pilatus(np.ones((5,5)), 45, 0, 10, 0, 0)
