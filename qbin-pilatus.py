@@ -49,6 +49,24 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     jvec = np.cross([0,1,0], Detunit)
     jvec /= np.linalg.norm(jvec)
     ivec = np.cross(jvec, Detunit)
-    
-    print(Detcen)
-qbin_pilatus([[0]], 0, 0, 0, 0, 0)
+
+    # Sample rotation matrices
+    sROT1 = np.array([
+        [np.cos(sth), 0, np.sin(sth)],
+        [0, 1, 0],
+        [-np.sin(sth), 0, np.cos(sth)],
+    ])
+    sROT2 = np.array([
+        [np.cos(sch), -np.sin(sch), 0],
+        [np.sin(sch), np.cos(sch), 0],
+        [0, 0, 1]
+    ])
+    sROT3 = np.array([
+        [1, 0, 0],
+        [0, np.cos(sph), -np.sin(sph)],
+        [0, np.sin(sph), np.cos(sph)]
+    ])
+    sROT = sROT1 @ sROT2 @ sROT3
+
+    print(sROT)
+qbin_pilatus([[0]], 45, 0, 10, 0, 0)
