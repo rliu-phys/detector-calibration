@@ -33,6 +33,10 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     sch = np.radians(Samchi)
     sph = np.radians(Samphi)
 
-    #
+    # Convert detector angles to radians
+    tthd = np.radians(Tthdet)
+    gamd = np.radians(Gamdet)
+
+    # 
     print('test')
 qbin_pilatus([[0]], 0, 0, 0, 0, 0)
