@@ -16,6 +16,13 @@ def findpowder(x, img_exp, plotflag=True):
 
     # If plotflag is True, display the images
     if plotflag:
+        # plot the experiment image
+        plt.figure(700)
+        plt.imshow(img_exp, cmap='gray')
+        plt.title("Raw Experimental Image")
+        plt.colorbar()
+        plt.axis('image')
+
         # Option 1: Plot the Z-component
         plt.figure(701)
         plt.imshow(f1[:, :, 2], cmap='gray')
