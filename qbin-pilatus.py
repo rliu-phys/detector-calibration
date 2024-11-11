@@ -37,6 +37,12 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     tthd = np.radians(Tthdet)
     gamd = np.radians(Gamdet)
 
-    # 
-    print('test')
+    # Calculate detector center in real space
+    Detcen = np.array([
+        Rdet * np.sin(tthd) * np.cos(gamd),
+        Rdet * np.sin(gamd),
+        Rdet * np.cos(tthd) * np.cos(gamd)
+    ])
+    Detunit = Detcen / np.linalg.norm(Detcen)
+    print(Detcen)
 qbin_pilatus([[0]], 0, 0, 0, 0, 0)
