@@ -105,5 +105,6 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
         plt.show()
 
     return qmat
-
-# qbin_pilatus(np.ones((5,5)), 45, 0, 10, 0, 0)
+# Example usage
+# img_exp = imageio.imread('path_to_image.tif')  # Replace with your image file path
+# qmat = qbin_pilatus(img_exp, 35.2028, 169510, 0, 10500, -10046)
