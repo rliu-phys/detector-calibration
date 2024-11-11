@@ -42,3 +42,11 @@ def findpowder(x, img_exp, plotflag=True):
         return f1
     else:
         return f1['error']
+    
+# Example usage
+# Load your experimental image (replace with your actual image file path)
+img_exp = np.random.rand(1024, 1062)  # Example placeholder image
+x = [1.8e5, -0.375e5, -0.30e5, 0.00037 * 1e5, 36.97]  # Example parameters
+
+# Call findpowder
+result = findpowder(x, img_exp, plotflag=True)
