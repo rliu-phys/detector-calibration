@@ -18,14 +18,14 @@ def findpowder(x, img_exp, plotflag=True):
     if plotflag:
         # plot the experiment image
         plt.figure(700)
-        plt.imshow(img_exp, vmin = 0, vmax = 20, cmap='gray')
+        plt.imshow(img_exp, vmin = 0, vmax = 20, cmap='jet')
         plt.title("Raw Experimental Image")
         plt.colorbar()
         plt.axis('image')
 
         # Option 1: Plot the Z-component
         plt.figure(701)
-        plt.imshow(f1[:, :, 2], cmap='gray')
+        plt.imshow(f1[:, :, 2], cmap='jet')
         plt.title("Z-Component of Data")
         plt.colorbar()
         plt.axis('image')
@@ -33,7 +33,7 @@ def findpowder(x, img_exp, plotflag=True):
         # Option 2: Plot the magnitude
         magnitude = np.linalg.norm(f1, axis=2)
         plt.figure(702)
-        plt.imshow(magnitude, cmap='gray')
+        plt.imshow(magnitude, cmap='jet')
         plt.title("Magnitude of Vector Field")
         plt.colorbar()
         plt.axis('image')
@@ -50,7 +50,7 @@ def findpowder(x, img_exp, plotflag=True):
 # Example usage
 # Load your experimental image (replace with your actual image file path)
 # img_exp = np.random.rand(1024, 1062)  # Example placeholder image
-image_path = 'Images/475_0_25.tiff'
+image_path = 'Images/CAP_1.tiff'
 img_exp = imageio.imread(image_path)  # Replace with your image file path
 x = [1.8e5, -0.375e5, -0.30e5, 0.00037 * 1e5, 36.97]  # Example parameters
 

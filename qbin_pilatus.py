@@ -99,7 +99,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=None, Samchi=N
     # Plot results if required
     if plotflag:
         plt.figure()
-        plt.imshow(qmat_magnitude, cmap='gray')
+        plt.imshow(qmat_magnitude, cmap='jet')
         plt.title("Momentum transfer (A^-1) per pixel map")
         plt.colorbar()
         plt.show()
