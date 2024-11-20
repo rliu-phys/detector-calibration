@@ -206,6 +206,15 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
 
     # Plot the maps if plotflag is enabled
     if plotflag:
+        
+        # Plot two theta map
+        plt.figure()
+        plt.imshow(img_exp, cmap="viridis", aspect="auto")
+        plt.colorbar(label="Intensity")
+        plt.title("Summed Image")
+        plt.axis("image")
+        plt.show()
+
         # Plot two theta map
         plt.figure()
         plt.imshow(two_theta_map, cmap="viridis", aspect="auto")
