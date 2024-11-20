@@ -199,16 +199,49 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
     tempm2 = (tempm1 - imdet_thresh) ** 2
     error_value = np.sum(tempm2)
     # Prepare the final data output
+    # Calculate two theta and gamma maps
+    two_theta_map = np.degrees(np.arccos(kfmat[:, :, 2]))  # acosd(kfmat(:,:,3))
+    gamma_map = 90 - np.degrees(np.arccos(kfmat[:, :, 1]))  # 90 - acosd(kfmat(:,:,2))
+    momentum_transfer_map = qmat[:, :, 3]  # qmat(:,:,4)
+
+    # Plot the maps if plotflag is enabled
+    if plotflag:
+        # Plot two theta map
+        plt.figure()
+        plt.imshow(two_theta_map, cmap="viridis", aspect="auto")
+        plt.colorbar(label="Two Theta (degrees)")
+        plt.title("Two Theta Per Pixel Map")
+        plt.axis("image")
+        plt.show()
+
+        # Plot gamma map
+        plt.figure()
+        plt.imshow(gamma_map, cmap="viridis", aspect="auto")
+        plt.colorbar(label="Gamma (degrees)")
+        plt.title("Gamma Per Pixel Map")
+        plt.axis("image")
+        plt.show()
+
+        # Plot momentum transfer map
+        plt.figure()
+        plt.imshow(momentum_transfer_map, cmap="viridis", aspect="auto")
+        plt.colorbar(label="Momentum Transfer (A^-1)")
+        plt.title("Momentum Transfer Per Pixel Map")
+        plt.axis("image")
+        plt.show()  
+          
     dataout = {
-        "two_theta": np.degrees(np.arccos(kfmat[:, :, 2])),
-        "gamma": 90 - np.degrees(np.arccos(kfmat[:, :, 1])),
+        "two_theta": two_theta_map,  # Add two theta map
+        "gamma": gamma_map,          # Add gamma map
+        "momentum_transfer": momentum_transfer_map,  # Add momentum transfer map
         "qmat": qmat,
         "kfmat": kfmat,
         "kimat": kimat,
         "qlist": qlist,
-        "powder": imdet_thresh,  # Add thresholded experimental data
-        "theory": tempm1,       # Ensure 'theory' is correctly computed
-        "error": error_value    # Replace with the actual error calculation
+        "powder": imdet_thresh,
+        "theory": tempm1,
+        "error": error_value
     }
+
 
     return dataout
