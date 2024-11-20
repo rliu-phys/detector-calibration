@@ -6,6 +6,7 @@ This module is for detector callibration at 26ID at APS
 import numpy as np
 import matplotlib.pyplot as plt
 import imageio.v2 as imageio
+import os
 from qbin_pilatus import qbin_pilatus
 
 # Function to save results
@@ -84,6 +85,6 @@ if __name__ == "__main__":
     result = findpowder(x, img_exp, plotflag=True)
     # Save the results for comparison
     save_results(result)
-    
+
     # Output the result for debugging
     print(result)
