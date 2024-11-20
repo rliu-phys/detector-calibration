@@ -192,6 +192,9 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
             if y >= 0:
                 plt.text(x, y, f"Au[{refl2[i, 0]}{refl2[i, 1]}{refl2[i, 2]}]", fontsize=8, color='white')
         plt.show()
+    # Threshold the experimental image to create 'powder'
+    threshold = 40  # Example threshold; adjust as needed
+    imdet_thresh = (imdet > threshold).astype(np.float64)
 
     # Prepare the final data output
     dataout = {
@@ -200,7 +203,10 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
         "qmat": qmat,
         "kfmat": kfmat,
         "kimat": kimat,
-        "qlist": qlist
+        "qlist": qlist,
+        "powder": imdet_thresh,  # Add thresholded experimental data
+        "theory": tempm1,       # Ensure 'theory' is correctly computed
+        "error": error_value    # Replace with the actual error calculation
     }
 
     return dataout
