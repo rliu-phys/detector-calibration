@@ -7,7 +7,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import imageio.v2 as imageio
 import os
-import cmocean
 from qbin_pilatus import qbin_pilatus
 
 # Function to save results
@@ -52,7 +51,7 @@ def findpowder(x, img_exp, plotflag=True):
     if plotflag:
          # Plot the thresholded experimental data
         plt.figure(701)
-        plt.imshow(f1["powder"], cmap="gray")
+        plt.imshow(f1["powder"], cmap="viridis")
         plt.title("Thresholded Experiment")
         plt.axis("image")
         plt.colorbar()
@@ -60,7 +59,7 @@ def findpowder(x, img_exp, plotflag=True):
 
         # Plot the theoretical data
         plt.figure(702)
-        plt.imshow(f1["theory"], cmap="gray")
+        plt.imshow(f1["theory"], cmap="viridis")
         plt.title("Theory")
         plt.axis("image")
         plt.colorbar()

@@ -182,15 +182,15 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
 
         # Plot the image with powder lines
         plt.figure()
-        plt.imshow(impow, cmap=cmocean.cm.parula)
+        plt.imshow(impow, cmap='viridis')
         plt.axis('image')
         plt.title("Image with Powder Lines")
         for i, (y, x) in enumerate(zip(iref, jref)):
             if y >= 0:
-                plt.text(x, y, f"Si[{refl[i, 0]}{refl[i, 1]}{refl[i, 2]}]", fontsize=8, color='white')
+                plt.text(x, y, f"Si[{refl[i, 0]}{refl[i, 1]}{refl[i, 2]}]", fontsize=12, color='white')
         for i, (y, x) in enumerate(zip(iref2, jref2)):
             if y >= 0:
-                plt.text(x, y, f"Au[{refl2[i, 0]}{refl2[i, 1]}{refl2[i, 2]}]", fontsize=8, color='white')
+                plt.text(x, y, f"Au[{refl2[i, 0]}{refl2[i, 1]}{refl2[i, 2]}]", fontsize=12, color='white')
         plt.show()
     # Threshold the experimental image to create 'powder'
     threshold = 40  # Example threshold; adjust as needed
