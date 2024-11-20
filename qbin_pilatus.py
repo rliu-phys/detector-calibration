@@ -195,7 +195,9 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
     # Threshold the experimental image to create 'powder'
     threshold = 40  # Example threshold; adjust as needed
     imdet_thresh = (imdet > threshold).astype(np.float64)
-
+    # Calculate error as the sum of squared differences between theoretical and experimental data
+    tempm2 = (tempm1 - imdet_thresh) ** 2
+    error_value = np.sum(tempm2)
     # Prepare the final data output
     dataout = {
         "two_theta": np.degrees(np.arccos(kfmat[:, :, 2])),
