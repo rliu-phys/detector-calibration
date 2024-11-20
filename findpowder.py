@@ -42,7 +42,7 @@ def findpowder(x, img_exp, plotflag=True):
     - f: Dictionary containing results if plotflag=True, otherwise the error value
     """
     # Unpack the parameters from x
-    R, Tthdet, Gamdet, Xdet, Ydet = x
+    Tthdet, R, Gamdet, Xdet, Ydet = x
 
     # Call qbin_pilatus with the unpacked parameters
     f1 = qbin_pilatus(img_exp, Tthdet, R, Gamdet, Xdet, Ydet, 0, 0, 0, plotflag)
