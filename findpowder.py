@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import imageio.v2 as imageio
 import os
+import cmocean
 from qbin_pilatus import qbin_pilatus
 
 # Function to save results
