@@ -5,7 +5,6 @@ This module is for detector callibration at 26ID at APS
 """
 import numpy as np
 import matplotlib.pyplot as plt
-import imageio
 
 def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samchi=0.0, Samphi=0.0, plotflag=True):
     """

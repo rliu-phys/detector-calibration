@@ -8,6 +8,17 @@ import matplotlib.pyplot as plt
 import imageio.v2 as imageio
 from qbin_pilatus import qbin_pilatus
 def findpowder(x, img_exp, plotflag=True):
+    """
+    Function to find powder diffraction calibration.
+
+    Parameters:
+    - x: List of parameters [R, Tthdet, Gamdet, Xdet, Ydet]
+    - img_exp: Experimental image (2D array)
+    - plotflag: Whether to plot the results
+
+    Returns:
+    - f: Dictionary containing results if plotflag=True, otherwise the error value
+    """
     # Unpack the parameters from x
     R, Tthdet, Gamdet, Xdet, Ydet = x
 
@@ -16,43 +27,40 @@ def findpowder(x, img_exp, plotflag=True):
 
     # If plotflag is True, display the images
     if plotflag:
-        # plot the experiment image
-        plt.figure(700)
-        plt.imshow(img_exp, vmin = 0, vmax = 20, cmap='jet')
-        plt.title("Raw Experimental Image")
-        plt.colorbar()
-        plt.axis('image')
-
-        # Option 1: Plot the Z-component
+         # Plot the thresholded experimental data
         plt.figure(701)
-        plt.imshow(f1[:, :, 2], cmap='jet')
-        plt.title("Z-Component of Data")
+        plt.imshow(f1["powder"], cmap="gray")
+        plt.title("Thresholded Experiment")
+        plt.axis("image")
         plt.colorbar()
-        plt.axis('image')
-
-        # Option 2: Plot the magnitude
-        magnitude = np.linalg.norm(f1, axis=2)
-        plt.figure(702)
-        plt.imshow(magnitude, cmap='jet')
-        plt.title("Magnitude of Vector Field")
-        plt.colorbar()
-        plt.axis('image')
-
         plt.show()
 
-    # Return the data or error
-    if plotflag:
-        return f1
-    else:
-        # Return an error value or some derived quantity
-        return np.linalg.norm(f1, axis=2).mean()  # Example: mean of the magnitude
-    
-# Example usage
-# Load your experimental image (replace with your actual image file path)
-# img_exp = np.random.rand(1024, 1062)  # Example placeholder image
-image_path = 'Images/CAP_1.tiff'
-img_exp = imageio.imread(image_path)  # Replace with your image file path
-x = [1.8e5, -0.375e5, -0.30e5, 0.00037 * 1e5, 36.97]  # Example parameters
+        # Plot the theoretical data
+        plt.figure(702)
+        plt.imshow(f1["theory"], cmap="gray")
+        plt.title("Theory")
+        plt.axis("image")
+        plt.colorbar()
+        plt.show()
 
-# Call findpowder
-result = findpowder(x, img_exp, plotflag=True)
+        return f1  # Return the full result dictionary
+
+    # If plotflag is False, return only the error
+    return f1["error"]
+
+# Example usage
+if __name__ == "__main__":
+    # Define the image path
+    image_path = 'Images/CAP_1.tiff'
+
+    # Load the experimental image
+    img_exp = imageio.imread(image_path)
+
+    # Example parameters [R, Tthdet, Gamdet, Xdet, Ydet]
+    x = [20, 150000, 17, -18000, 2500]
+
+    # Call the findpowder function with plotting enabled
+    result = findpowder(x, img_exp, plotflag=True)
+
+    # Output the result for debugging
+    print(result)
