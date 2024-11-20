@@ -26,7 +26,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
     kb = 2 * np.pi * Ekev / 12.39842  # Beam momentum in 1/Å
     hpxsz = 75  # Horizontal pixel size in micrometers
     vpxsz = 75  # Vertical pixel size
-    Binflag = 0  # Set to 1 if binning is required
+    Binflag = 1  # Set to 1 if binning is required
     Powdflag = 1  # Set to 1 to display powder lines
     qnum = 75  # Number of momentum space bins
 
