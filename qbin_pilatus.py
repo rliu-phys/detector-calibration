@@ -182,7 +182,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
 
         # Plot the image with powder lines
         plt.figure()
-        plt.imshow(impow, cmap='gray')
+        plt.imshow(impow, cmap=cmocean.cm.parula)
         plt.axis('image')
         plt.title("Image with Powder Lines")
         for i, (y, x) in enumerate(zip(iref, jref)):
