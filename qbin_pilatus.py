@@ -209,7 +209,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
         
         # Plot two theta map
         plt.figure()
-        plt.imshow(img_exp, cmap="viridis", aspect="auto")
+        plt.imshow(img_exp, cmap="viridis", aspect="auto", vmax = 100)
         plt.colorbar(label="Intensity")
         plt.title("Summed Image")
         plt.axis("image")
