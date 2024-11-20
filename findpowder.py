@@ -7,6 +7,27 @@ import numpy as np
 import matplotlib.pyplot as plt
 import imageio.v2 as imageio
 from qbin_pilatus import qbin_pilatus
+
+# Function to save results
+def save_results(dataout, output_folder="Calibration Results"):
+    """
+    Save the results to CSV files in the specified output folder.
+
+    Parameters:
+    - dataout: Dictionary containing the results (e.g., gamma, two_theta, etc.)
+    - output_folder: Folder where results will be saved
+    """
+    # Create the folder if it doesn't exist
+    os.makedirs(output_folder, exist_ok=True)
+
+    # Save each key in the dictionary to a CSV file
+    np.savetxt(os.path.join(output_folder, "gamma.csv"), dataout["gamma"], delimiter=",")
+    np.savetxt(os.path.join(output_folder, "gamma_mot.csv"), dataout["gamma"], delimiter=",")
+    np.savetxt(os.path.join(output_folder, "twotheta.csv"), dataout["two_theta"], delimiter=",")
+    np.savetxt(os.path.join(output_folder, "twotheta_mot.csv"), dataout["two_theta"], delimiter=",")
+
+    print(f"Results saved in folder: {output_folder}")
+
 def findpowder(x, img_exp, plotflag=True):
     """
     Function to find powder diffraction calibration.
@@ -61,6 +82,8 @@ if __name__ == "__main__":
 
     # Call the findpowder function with plotting enabled
     result = findpowder(x, img_exp, plotflag=True)
-
+    # Save the results for comparison
+    save_results(result)
+    
     # Output the result for debugging
     print(result)
