@@ -1,5 +1,5 @@
 """
-Nov 11, 2024 Developed by Rui Liu @ANL
+Nov 20, 2024 Developed by Rui Liu @ANL
 rui.liu@anl.gov
 This module is for detector callibration at 26ID at APS
 """
@@ -55,7 +55,7 @@ def findpowder(x, img_exp, plotflag=True):
         plt.title("Thresholded Experiment")
         plt.axis("image")
         plt.colorbar()
-        plt.show()
+        plt.show(block=False)
 
         # Plot the theoretical data
         plt.figure(702)
@@ -73,13 +73,13 @@ def findpowder(x, img_exp, plotflag=True):
 # Example usage
 if __name__ == "__main__":
     # Define the image path
-    image_path = 'Images/CAP_1.tiff'
+    image_path = 'Images/475_0_25.tiff'
 
     # Load the experimental image
     img_exp = imageio.imread(image_path)
 
     # Example parameters [R, Tthdet, Gamdet, Xdet, Ydet]
-    x = [20, 150000, 17, -18000, 2500]
+    x = [25, 450000, 0, 0, 0]
 
     # Call the findpowder function with plotting enabled
     result = findpowder(x, img_exp, plotflag=True)

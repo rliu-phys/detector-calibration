@@ -138,7 +138,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
             plt.xlabel("Momentum transfer (1/Å)")
             plt.ylabel("Average Intensity (ADU)")
             plt.title("Binned Average Intensity")
-            plt.show()
+            plt.show(block=False)
 
     # Display powder lines if Powdflag is set
     if Powdflag:
@@ -187,11 +187,11 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
         plt.title("Image with Powder Lines")
         for i, (y, x) in enumerate(zip(iref, jref)):
             if y >= 0:
-                plt.text(x, y, f"Si[{refl[i, 0]}{refl[i, 1]}{refl[i, 2]}]", fontsize=12, color='white')
+                plt.text(x, y+100, f"Si[{refl[i, 0]}{refl[i, 1]}{refl[i, 2]}]", fontsize=8, color='white')
         for i, (y, x) in enumerate(zip(iref2, jref2)):
             if y >= 0:
-                plt.text(x, y, f"Au[{refl2[i, 0]}{refl2[i, 1]}{refl2[i, 2]}]", fontsize=12, color='white')
-        plt.show()
+                plt.text(x, y+100, f"Au[{refl2[i, 0]}{refl2[i, 1]}{refl2[i, 2]}]", fontsize=8, color='white')
+        plt.show(block=False)
     # Threshold the experimental image to create 'powder'
     threshold = 40  # Example threshold; adjust as needed
     imdet_thresh = (imdet > threshold).astype(np.float64)
@@ -213,7 +213,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
         plt.colorbar(label="Intensity")
         plt.title("Summed Image")
         plt.axis("image")
-        plt.show()
+        plt.show(block=False)
 
         # Plot two theta map
         plt.figure()
@@ -221,7 +221,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
         plt.colorbar(label="Two Theta (degrees)")
         plt.title("Two Theta Per Pixel Map")
         plt.axis("image")
-        plt.show()
+        plt.show(block=False)
 
         # Plot gamma map
         plt.figure()
@@ -229,7 +229,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
         plt.colorbar(label="Gamma (degrees)")
         plt.title("Gamma Per Pixel Map")
         plt.axis("image")
-        plt.show()
+        plt.show(block=False)
 
         # Plot momentum transfer map
         plt.figure()
@@ -237,7 +237,7 @@ def qbin_pilatus(img_exp, Tthdet, Rdet, Gamdet, Xdet, Ydet, Samth=24.9456, Samch
         plt.colorbar(label="Momentum Transfer (A^-1)")
         plt.title("Momentum Transfer Per Pixel Map")
         plt.axis("image")
-        plt.show()  
+        plt.show(block=False)  
           
     dataout = {
         "two_theta": two_theta_map,  # Add two theta map
