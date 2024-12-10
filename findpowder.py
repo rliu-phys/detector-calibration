@@ -73,13 +73,13 @@ def findpowder(x, img_exp, plotflag=True):
 # Example usage
 if __name__ == "__main__":
     # Define the image path
-    image_path = 'Images/CAP_1.tiff'
+    image_path = 'Images/700_0_25.tiff'
 
     # Load the experimental image
     img_exp = imageio.imread(image_path)
 
-    # Example parameters [R, Tthdet, Gamdet, Xdet, Ydet]
-    x = [20, 150000, 17, -18000, 2500]
+    # Example parameters [Tthdet, R, Gamdet, Xdet, Ydet]
+    x = [0, 475000, 25, 0, 0]
 
     # Call the findpowder function with plotting enabled
     result = findpowder(x, img_exp, plotflag=True)
